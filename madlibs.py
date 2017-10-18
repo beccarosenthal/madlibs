@@ -14,6 +14,11 @@ AWESOMENESS = [
     'smashing', 'lovely',
 ]
 
+DISSES = [
+    "scurvey companion", "pigeon-liver'd hobby horse", "poisonous bunch-backed toad",
+    "stewed prune", "bolting hutch of beastliness", "swollen parcel of dropsies",
+    "huge bombard of sack", "stuffed cloak bag of guts", "plague sore"]
+
 
 @app.route('/')
 def start_here():
@@ -58,13 +63,14 @@ def show_madlib_form():
         'noun3': "n3",
         'adjective3': "adj3",
         'verb1': "v1",
-        'adverb2': "adv2",
+        'verb2': "verb2",
         'past_verb2': "pv2",
         'adjective4': "adj4"
         }
 
     if play_game == "n":
-        return render_template("goodbye.html")
+        insult = choice(DISSES)
+        return render_template("goodbye.html", insult=insult)
     else:
         return render_template("game.html", pairs=pairs)
 
@@ -87,7 +93,7 @@ def show_madlib():
     n3 = request.args.get("n3").lower()
     adj3 = request.args.get("adj3").lower()
     v1 = request.args.get("v1").lower()
-    adv2 = request.args.get("adv2").lower()
+    verb2 = request.args.get("verb2").lower()
     pv2 = request.args.get("pv2").lower()
     adj4 = request.args.get("adj4").lower()
 
@@ -103,7 +109,7 @@ def show_madlib():
                             noun3=n3,
                             adjective3=adj3,
                             verb1=v1,
-                            adverb2=adv2,
+                            verb2=verb2,
                             past_verb2=pv2,
                             adjective4=adj4)
 
@@ -124,8 +130,8 @@ if __name__ == '__main__':
  #                            adjective2=adj2,
  #                            noun2=n2,
  #                            noun3=n3,
- #                            adjective3=adj3
+ #                            adjective3=adj3,
  #                            verb1=v1,
- #                            adverb2=adv2,
+ #                            verb2=verb2,
  #                            past_verb2=pv2,
  #                            adjective4=adj4)

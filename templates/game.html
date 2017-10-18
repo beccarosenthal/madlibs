@@ -1,9 +1,7 @@
-<!doctype html>
-<html>
-<head>
-  <title>Players Gonna Play</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block title %}Players Gonna Play{% endblock %} 
+{% block content %}
+
     <p>Ahhhhh ... You want to play a game?</p>
     <p>First, we'll need some information from you!</p>
 
@@ -24,24 +22,4 @@
     </form>
     </table>
 
-
-</body>
-</html>
-<!-- 
-    pairs = {
-        adjective1: adj1,
-        noun1: n1,
-        past_verb: pv,
-        adverb1: adv1,
-        adjective2: adj2,
-        noun2: n2,
-        noun3: n3,
-        adjective3: adj3,
-        verb1: v1,
-        adverb2: adv2,
-        past_verb2: pv2,
-        adjective4: adj4
-        } -->
-
-<!-- 
-        http://localhost:5000/madlib?n3=pickle&n1=solar+system&adv2=slowly&adv1=quickly&n2=cupcake&pv=gallavanted&adj1=fuzzy&v1=throw&adj3=ephemeral&adj2=squiggly&adj4=explosive&pv2=cartwheeled -->
+{% endblock %}

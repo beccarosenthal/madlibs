@@ -1,11 +1,9 @@
-<!doctype html>
-<html>
-<head>
-  <title>Haters Gonna Hate</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block title %}Haters Gonna Hate{% endblock %} 
+{% block content %}
     You don't want to play our game?
     MONSTER.<br>
-    You should reevaluate your life choices. 
-</body>
-</html>
+    You should reevaluate your life choices, you {{ insult }}!
+        
+
+{% endblock %}

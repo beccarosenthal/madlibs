@@ -1,9 +1,8 @@
-<!doctype html>
-<html>
-<head>
-  <title>A Compliment</title>
-</head>
-<body>
+<!-- ###by putting block in template, i don't need that html shit anymore. Yay!!! -->
+
+{% extends "base.html" %}
+{% block title %}This is a Compliment{% endblock %} 
+{% block content %}
     Hi {{ person }}! I think you're {{ compliment }}!
     <p></p>
     <form method=GET name="play-game" action="/game">
@@ -12,5 +11,7 @@
       <input type="radio" name="game-dec" value="n" />No way, Jose!
       <input type="submit" value="Send my Decision" />
     </form>
-</body>
-</html>
+{% endblock %}
+
+
+
