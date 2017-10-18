@@ -45,22 +45,38 @@ def greet_person():
 @app.route('/game')
 def show_madlib_form():
     """Returns page in response to user decision re: the game"""
+
     play_game = request.args.get("game-dec")
+
+    pairs = {
+        'adjective1': "adj1",
+        'noun1': "n1",
+        'past_verb': "pv",
+        'adverb1': "adv1",
+        'adjective2': "adj2",
+        'noun2': "n2",
+        'noun3': "n3",
+        'adjective3': "adj3",
+        'verb1': "v1",
+        'adverb2': "adv2",
+        'past_verb2': "pv2",
+        'adjective4': "adj4"
+        }
 
     if play_game == "n":
         return render_template("goodbye.html")
     else:
-        return render_template("game.html")
+        return render_template("game.html", pairs=pairs)
 
 
 @app.route('/madlib')
 def show_madlib():
     """takes form for madlib from user, returns madlib text"""
 
-    color = request.args.get("color").lower()
-    person = request.args.get("person").title()
-    noun = request.args.get("noun").lower()
-    adjective = request.args.get("adj").lower()
+    # color = request.args.get("color").lower()
+    # person = request.args.get("person").title()
+    # noun = request.args.get("noun").lower()
+    # adjective = request.args.get("adj").lower()
 
     adj1 = request.args.get("adj1").lower()
     n1 = request.args.get("n1").lower()
@@ -75,14 +91,17 @@ def show_madlib():
     pv2 = request.args.get("pv2").lower()
     adj4 = request.args.get("adj4").lower()
 
-    return render_template("madlib.html", adjective1=adj1,
+
+
+    return render_template("madlib.html",  
+                            adjective1=adj1,
                             noun1=n1,
                             past_verb=pv,
                             adverb1=adv1,
                             adjective2=adj2,
                             noun2=n2,
                             noun3=n3,
-                            adjective3=adj3
+                            adjective3=adj3,
                             verb1=v1,
                             adverb2=adv2,
                             past_verb2=pv2,
@@ -95,3 +114,18 @@ if __name__ == '__main__':
 
     app.run(debug=True)
 
+
+#in case we need it ... because it fucking took forever to type
+
+ # adjective1=adj1,
+ #                            noun1=n1,
+ #                            past_verb=pv,
+ #                            adverb1=adv1,
+ #                            adjective2=adj2,
+ #                            noun2=n2,
+ #                            noun3=n3,
+ #                            adjective3=adj3
+ #                            verb1=v1,
+ #                            adverb2=adv2,
+ #                            past_verb2=pv2,
+ #                            adjective4=adj4)
