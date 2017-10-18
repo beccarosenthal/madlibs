@@ -19,6 +19,9 @@ DISSES = [
     "stewed prune", "bolting hutch of beastliness", "swollen parcel of dropsies",
     "huge bombard of sack", "stuffed cloak bag of guts", "plague sore"]
 
+HOW_COOL = ["somewhat cool", "super cool", "not that cool",
+            "cool enough for the circumstances", "uncool", "cool"]
+
 
 @app.route('/')
 def start_here():
@@ -31,7 +34,14 @@ def start_here():
 def say_hello():
     """Say hello to user."""
 
-    return render_template("hello.html")
+    #right now, input list sends to jinja as a string, not as html. Change that. 
+
+    input_list = ""
+    for coolness in HOW_COOL:
+        input_list = input_list + ('<input type="checkbox" name="coolness" value="{}">{}'
+                                   .format(coolness, coolness.title()))
+    
+    return render_template("hello.html", input_list=input_list)
 
 
 @app.route('/greet')
@@ -39,12 +49,27 @@ def greet_person():
     """Greet user with compliment."""
 
     player = request.args.get("person")
+    coolness = request.args.getlist("coolness")
+
+    ###Trying to print out coolness in list with oxford comma
+    if coolness:
+        cool_string = coolness[0]
+
+        if len(coolness) == 2:
+            cool_string = cool_string + " and " + coolness[1]
+        elif len(coolness) > 2:
+            for item in coolness[1:-1]:
+                cool_string = cool_string + ", " + item
+            cool_string = cool_string + ", and " + coolness[-1]
+    else:
+        cool_string = "You're not cool enough to gague your coolness. Loser."
 
     compliment = choice(AWESOMENESS)
 
     return render_template("compliment.html",
                            person=player,
-                           compliment=compliment)
+                           compliment=compliment,
+                           coolness=cool_string)
 
 
 @app.route('/game')
