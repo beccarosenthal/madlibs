@@ -54,19 +54,22 @@ def show_madlib_form():
     play_game = request.args.get("game-dec")
 
     pairs = {
-        'adjective1': "adj1",
-        'noun1': "n1",
-        'past_verb': "pv",
-        'adverb1': "adv1",
-        'adjective2': "adj2",
-        'noun2': "n2",
-        'noun3': "n3",
-        'adjective3': "adj3",
-        'verb1': "v1",
-        'verb2': "verb2",
-        'past_verb2': "pv2",
-        'adjective4': "adj4"
+        'adjective1': ["adj1"],
+        'noun1': ["n1"],
+        'past_verb1': ["pv"],
+        'adverb1': ["adv1"],
+        'adjective2': ["adj2"],
+        'noun2': ["n2"],
+        'noun3': ["n3"],
+        'adjective3': ["adj3"],
+        'verb1': ["v1"],
+        'verb2': ["verb2"],
+        'past_verb2': ["pv2"],
+        'adjective4': ["adj4"]
         }
+     #append the display version of the key to list at value
+    for key in pairs:
+        pairs[key].append(key[:-1].replace("_", " ").title())
 
     if play_game == "n":
         insult = choice(DISSES)
@@ -102,7 +105,7 @@ def show_madlib():
     return render_template("madlib.html",  
                             adjective1=adj1,
                             noun1=n1,
-                            past_verb=pv,
+                            past_verb1=pv,
                             adverb1=adv1,
                             adjective2=adj2,
                             noun2=n2,

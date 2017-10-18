@@ -10,8 +10,8 @@
     <form action="/madlib" method=GET name="madlib-info">
         {% for key in pairs %}
             <tr>
-                <td>{{ key }}</td>
-                <td><input type="text" name="{{ pairs[key] }}" 
+                <td>{{ pairs[key][1] }}</td>
+                <td><input type="text" name="{{ pairs[key][0] }}" 
                            required></td>
             </tr>
         {% endfor %}
@@ -23,3 +23,4 @@
     </table>
 
 {% endblock %}
+
